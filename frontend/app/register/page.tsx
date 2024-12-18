@@ -1,17 +1,20 @@
-"use server";
 import { registerUser } from "../actions/auth";
 
-const page = () => {
+const Page = () => {
   async function handleSubmit(formData: FormData) {
+    "use server";
     try {
-      await registerUser(formData);
+      const message = await registerUser(formData);
+      console.log(message);
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
+        console.error(error.message);
+      } else {
+        console.error("An unknown error occurred");
       }
-      console.error("An unknown error occurred");
     }
   }
+
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <form
@@ -50,4 +53,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
