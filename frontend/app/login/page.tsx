@@ -1,11 +1,15 @@
+"use client";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../actions/auth";
+import { login } from "@/store/slices/authSlice";
 
-const page = () => {
+const Page = () => {
+  const dispatch = useDispatch();
+
   async function handleSubmit(formData: FormData) {
-    "use server";
     try {
-      const token = await loginUser(formData);
-      console.log("Access token:", token.access);
+      const { access, refresh } = await loginUser(formData);
+      dispatch(login({ accessToken: access, refreshToken: refresh }));
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message);
@@ -44,4 +48,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
