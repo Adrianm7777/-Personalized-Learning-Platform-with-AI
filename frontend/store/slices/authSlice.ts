@@ -46,7 +46,7 @@ export const registerUser = createAsyncThunk(
   "auth/register",
   async ({ username, email, password }: IUser, thunkApi) => {
     try {
-      const response = await axios.post(`${API_URL}/register/`, {
+      const response = await axios.post(`${API_URL}users/register/`, {
         username,
         email,
         password,
