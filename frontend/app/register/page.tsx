@@ -1,3 +1,4 @@
+"use client";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { registerUser } from "@/store/slices/authSlice";
 import Link from "next/link";
