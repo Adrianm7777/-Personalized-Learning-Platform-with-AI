@@ -1,22 +1,15 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from .models import Recommendation
+from django.http import JsonResponse
+from .models import PersonalizedLearningModel
 from .serializers import RecommendationSerialzer
 
-class RecommendationView(APIView):
-    permission_classes = [IsAuthenticated]
+model = PersonalizedLearningModel()
 
-    def get(self, request):
-        recommendations = Recommendation.objects.filter(user=request.user)
-        serializer = RecommendationSerialzer(recommendations, many =True)
-        return Response({"recommendations":serializer.data})
+def get_recommendation(request):
+      user_id = request.GET.get("user_id")
+      topic = request.GET.get("topic")
 
-    def post(self,request):
-        data = request.data
-        data["user"] = request.user.id
-        serializer = RecommendationSerialzer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors,status=400)
+      if not user_id or not topic:
+            return JsonResponse({'error': 'Missing parameters'}, status=400)
+      
+      recommendation = model.predict(user_id, topic)
+      return JsonResponse({"reccomendation":recommendation})
