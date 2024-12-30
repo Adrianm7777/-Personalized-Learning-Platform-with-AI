@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Recommendation
+from .models import  PersonalizedLearningModel
 
 class RecommendationSerialzer(serializers.ModelSerializer):
     class Meta:
-        model = Recommendation
+        model =  PersonalizedLearningModel
         fields = ["id","user","course_name"]
 
 

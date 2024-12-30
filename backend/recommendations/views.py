@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from .models import PersonalizedLearningModel
-from .serializers import RecommendationSerialzer
 
 model = PersonalizedLearningModel()
 
