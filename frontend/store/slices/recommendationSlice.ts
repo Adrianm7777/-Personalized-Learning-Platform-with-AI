@@ -16,10 +16,10 @@ const initialState: IRecommendationState = {
 
 export const fetchRecommendation = createAsyncThunk(
   "recommendations/fetchRecommendation",
-  async (payload: { user_id: string; topic: string }) => {
+  async (payload: { userId: string; topic: string }) => {
     const response = await axios.get(
       `${API_URL}/recommendations/recommendations/`,
-      { params: { user_id: payload.user_id, topic: payload.topic } }
+      { params: { user_id: payload.userId, topic: payload.topic } }
     );
     return response.data.recommendation;
   }
