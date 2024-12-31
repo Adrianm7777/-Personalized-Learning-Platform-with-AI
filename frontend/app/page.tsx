@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Home = () => (
@@ -63,9 +64,9 @@ const Home = () => (
     <footer className="text-center py-8 bg-gray-800 text-white rounded-lg">
       <p>© 2024 Personalized Learning Platform. All rights reserved.</p>
       <p className="mt-2">
-        <a href="#" className="text-yellow-500 hover:text-yellow-400">
+        <Link href="#" className="text-yellow-500 hover:text-yellow-400">
           Privacy Policy
-        </a>{" "}
+        </Link>{" "}
         |{" "}
         <a href="#" className="text-yellow-500 hover:text-yellow-400">
           Terms of Service
